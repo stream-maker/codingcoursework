@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇游戏</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="vendor/sql-wasm.js"></script>
+</head>
+<body class="game-body">
+    <canvas id="gameCanvas"></canvas>
+    
+    <div class="game-ui-layer">
+        <div class="header-nav">
+            <a href="index.html" class="back-btn">← 返回主页</a>
+            <div class="key-display">
+                当前键位: <span id="currentKeys">↑ ↓ ← →</span>
+            </div>
+            <div id="playerDisplay" class="player-display hidden">
+                玩家: <span id="playerName"></span>
+            </div>
+        </div>
+        
+        <div class="score-board">
+            <span>分数: <span id="score">0</span></span>
+        </div>
+
+        <div id="overlay" class="overlay">
+            <div id="mainMenu">
+                <h2 id="gameMessage">准备好了吗？</h2>
+                <button id="startBtn">开始游戏</button>
+                <button id="configBtn" class="secondary-btn">键位设置</button>
+                <div class="controls-hint">
+                    使用方向键 ↑ ↓ ← → 控制移动
+                </div>
+            </div>
+
+            <div id="configPanel" class="config-panel hidden">
+                <h3>自定义键位</h3>
+                <p class="config-hint">点击按钮后按下新按键</p>
+                <div class="key-inputs">
+                    <div class="key-control">
+                        <label>上</label>
+                        <button class="key-bind-btn" data-action="up">ArrowUp</button>
+                    </div>
+                    <div class="key-control">
+                        <label>左</label>
+                        <button class="key-bind-btn" data-action="left">ArrowLeft</button>
+                    </div>
+                    <div class="key-control">
+                        <label>下</label>
+                        <button class="key-bind-btn" data-action="down">ArrowDown</button>
+                    </div>
+                    <div class="key-control">
+                        <label>右</label>
+                        <button class="key-bind-btn" data-action="right">ArrowRight</button>
+                    </div>
+                </div>
+                <button id="closeConfigBtn" class="secondary-btn">完成</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
