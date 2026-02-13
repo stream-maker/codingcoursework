@@ -1,89 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vibe-coding实践</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="vendor/sql-wasm.js"></script>
-</head>
-<body>
-    <div class="top-bar">
-        <div id="userInfo" class="user-info hidden">
-            <span id="userDisplay"></span>
-            <button id="logoutBtn" class="text-btn">退出</button>
-        </div>
-        <button id="loginBtn" class="primary-btn small-btn">登录 / 注册</button>
-    </div>
-
-    <div class="container home-container">
-        <h1>vibe-coding实践</h1>
-        <p>选择一个项目开始体验</p>
-        <div class="game-list">
-            <div class="game-card-wrapper">
-                <a href="snake.html" class="game-card">
-                    <div class="game-icon">🐍</div>
-                    <div class="game-info">
-                        <div class="game-title">贪吃蛇</div>
-                        <div class="game-desc">经典怀旧游戏</div>
-                    </div>
-                </a>
-                <button class="leaderboard-btn" data-game="snake">🏆 排行榜</button>
-            </div>
-            
-            <!-- 这里预留位置给未来的游戏 -->
-            <div class="game-card coming-soon">
-                <div class="game-icon">➕</div>
-                <div class="game-info">
-                    <div class="game-title">敬请期待</div>
-                    <div class="game-desc">更多项目开发中...</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Modal -->
-    <div id="authModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 id="authTitle">登录</h2>
-            <div class="auth-tabs">
-                <button class="tab-btn active" data-tab="login">登录</button>
-                <button class="tab-btn" data-tab="register">注册</button>
-            </div>
-            <form id="authForm">
-                <div class="form-group">
-                    <label>昵称</label>
-                    <input type="text" id="nicknameInput" required placeholder="请输入昵称">
-                </div>
-                <div class="form-group">
-                    <label>密码</label>
-                    <input type="password" id="passwordInput" required placeholder="请输入密码">
-                </div>
-                <button type="submit" id="authSubmitBtn" class="primary-btn">登录</button>
-                <p id="authMessage" class="error-message"></p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Leaderboard Modal -->
-    <div id="leaderboardModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>🏆 排行榜 - 贪吃蛇</h2>
-            <div class="leaderboard-list" id="leaderboardList">
-                <!-- Items will be injected here -->
-                <p class="loading-text">加载中...</p>
-            </div>
-            <div class="leaderboard-actions">
-                <button id="exportBtn" class="secondary-btn small-btn">导出数据</button>
-                <button id="importBtn" class="secondary-btn small-btn">导入数据</button>
-                <input type="file" id="importInput" accept=".json" class="hidden">
-            </div>
-        </div>
-    </div>
-
-    <script src="utils.js"></script>
-    <script src="home.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vibe Coding Games</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
