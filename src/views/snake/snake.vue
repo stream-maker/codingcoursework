@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import VirtualJoystick from '../../components/VirtualJoystick.vue'
 
 const router = useRouter()
 
@@ -13,6 +14,7 @@ const showConfig = ref(false)
 const gameMessage = ref('准备好了吗？')
 const startBtnText = ref('开始游戏')
 const activeKeyBind = ref(null) // 'up', 'down', 'left', 'right'
+const isMobile = ref(false)
 
 // Game State (non-reactive for performance where possible)
 let ctx = null
@@ -62,6 +64,8 @@ function resizeCanvas() {
   tileCountX = Math.floor(gameCanvas.value.width / GRID_SIZE)
   tileCountY = Math.floor(gameCanvas.value.height / GRID_SIZE)
   
+  isMobile.value = window.innerWidth < 768
+
   if (!isGameRunning.value) {
     drawGame()
   }
@@ -239,6 +243,28 @@ function handleKeydown(event) {
   }
 }
 
+function handleJoystick(direction) {
+  if (!isGameRunning.value) return
+  
+  const goingUp = dy === -1
+  const goingDown = dy === 1
+  const goingRight = dx === 1
+  const goingLeft = dx === -1
+  
+  if (direction === 'LEFT' && !goingRight) {
+    dx = -1; dy = 0
+  }
+  if (direction === 'UP' && !goingDown) {
+    dx = 0; dy = -1
+  }
+  if (direction === 'RIGHT' && !goingLeft) {
+    dx = 1; dy = 0
+  }
+  if (direction === 'DOWN' && !goingUp) {
+    dx = 0; dy = 1
+  }
+}
+
 // Config UI
 function toggleConfig() {
   showConfig.value = !showConfig.value
@@ -287,13 +313,14 @@ function goBack() {
           <button @click="startGame" class="primary-btn big-btn">{{ startBtnText }}</button>
           
           <div class="controls-hint">
-            <p>控制键: 
+            <p v-if="!isMobile">控制键: 
               {{ formatKey(keyMap.up) }} 
               {{ formatKey(keyMap.down) }} 
               {{ formatKey(keyMap.left) }} 
               {{ formatKey(keyMap.right) }}
             </p>
-            <button @click="toggleConfig" class="text-btn">自定义按键</button>
+            <p v-else>使用屏幕右下角的摇杆控制方向</p>
+            <button v-if="!isMobile" @click="toggleConfig" class="text-btn">自定义按键</button>
           </div>
         </div>
 
@@ -316,6 +343,8 @@ function goBack() {
 
       </div>
     </div>
+    <!-- Joystick for Mobile -->
+    <VirtualJoystick v-if="isMobile" @changeDirection="handleJoystick" />
   </div>
 </template>
 
