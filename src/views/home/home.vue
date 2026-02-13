@@ -20,6 +20,16 @@ const router = useRouter()
             </div>
           </router-link>
         </div>
+
+        <div class="game-card-wrapper">
+          <router-link to="/tcm-study" class="game-card tcm-card">
+            <div class="game-icon">💊</div>
+            <div class="game-info">
+              <div class="game-title">中医经典研习</div>
+              <div class="game-desc">伤寒 · 金匮 · 温病</div>
+            </div>
+          </router-link>
+        </div>
         
         <div class="game-card coming-soon">
           <div class="game-icon">➕</div>
@@ -38,5 +48,25 @@ const router = useRouter()
 .home-page {
     width: 100%;
     height: 100%;
+}
+
+.tcm-card {
+  background: linear-gradient(135deg, #2c3e50 0%, #4a708b 100%);
+  color: white;
+  border: 1px solid #4a708b;
+}
+
+.tcm-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(74, 112, 139, 0.3);
+  background: linear-gradient(135deg, #34495e 0%, #5d8aa8 100%);
+}
+
+.tcm-card .game-title {
+  color: white;
+}
+
+.tcm-card .game-desc {
+  color: rgba(255, 255, 255, 0.8);
 }
 </style>
